@@ -3694,7 +3694,7 @@ abstract class ModuleCatalog extends Module
 			$strWhere .=' AND '.$this->publishField.'=1';
 		}
 		// query database
-		$objNodes = $this->Database->prepare('SELECT DISTINCT '.$this->strTable.'.*, tl_catalog_types.jumpTo AS parentJumpTo FROM '.$this->strTable.($blnTags?', tl_catalog_tag_rel':'').', tl_catalog_types WHERE tl_catalog_types.id='.$this->strTable.'.pid AND '.$strWhere)
+		$objNodes = $this->Database->prepare('SELECT DISTINCT '.$this->strTable.'.*, tl_catalog_types.jumpTo AS parentJumpTo FROM '.$this->strTable.($blnTags?', tl_catalog_tag_rel':'').', tl_catalog_types WHERE tl_catalog_types.id='.$this->strTable.'.pid AND '.$strWhere. ' ORDER BY sorting ASC')
 										->execute($id);
 		if ($objNodes->numRows < 1)
 		{
